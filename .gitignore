@@ -23,3 +23,12 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST.in
+.coverage
+tests/.coverage
+__pycache__/
+tests/__pycache__/
+.pytest_cache/
+tests/.pytest_cache/
+.vscode/
+sample_data_input.csv
+sample_data_output.csv
