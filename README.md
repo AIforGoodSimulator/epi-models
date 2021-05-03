@@ -1,11 +1,5 @@
-<html>
-<div align="left">
-	<br>
-		<img src="coverage.svg" width="90" height="20" alt="Click to see the source">
-	</a>
-	<br>
-</div>
-</html>
+![CI](https://github.com/AIforGoodSimulator/epi-models/actions/workflows/workflow.yml/badge.svg)
+[![codecov](https://codecov.io/gh/AIforGoodSimulator/epi-models/branch/main/graph/badge.svg?token=BJZ7D1YNTT)](https://codecov.io/gh/AIforGoodSimulator/epi-models)
 
 
 ## Epi-models

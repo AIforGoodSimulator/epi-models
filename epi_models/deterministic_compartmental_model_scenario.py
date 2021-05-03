@@ -8,7 +8,7 @@ class DeterministicCompartmentalModelScenario(object):
         remove_symptomatic_rate=0,
         remove_high_risk_rate=0,
         first_high_risk_category_n=2,
-        icu_capacity=6,
+        icu_capacity=0,
     ):
         # baseline parameters that need to be run (Do nothing scenario)
         # self.transmission_reduction_factor = transmission_reduction_factor
@@ -95,12 +95,12 @@ class SingleInterventionScenario(DeterministicCompartmentalModelScenario):
         end_times,
         infection_matrix,
         apply_shielding=False,
-        transmission_reduction_factor_inter=1,
-        isolation_capacity_inter=0,
-        remove_symptomatic_rate_inter=0,
-        remove_high_risk_rate_inter=0,
-        first_high_risk_category_n_inter=2,
-        icu_capacity_inter=6,
+        transmission_reduction_factor_inter=None,
+        isolation_capacity_inter=None,
+        remove_symptomatic_rate_inter=None,
+        remove_high_risk_rate_inter=None,
+        first_high_risk_category_n_inter=None,
+        icu_capacity_inter=None,
         inter_rate_change="Constant",
         camp_specific_baseline_scenario=None,
     ):
@@ -110,26 +110,58 @@ class SingleInterventionScenario(DeterministicCompartmentalModelScenario):
             self.baseline_param_dict = (
                 camp_specific_baseline_scenario.baseline_param_dict
             )
+        param_dict = dict()
+        if transmission_reduction_factor_inter is None:
+            param_dict["transmission_reduction_factor"] = self.baseline_param_dict[
+                "transmission_reduction_factor"
+            ]
+        else:
+            param_dict[
+                "transmission_reduction_factor"
+            ] = transmission_reduction_factor_inter
+        if isolation_capacity_inter is None:
+            param_dict["isolation_capacity"] = self.baseline_param_dict[
+                "isolation_capacity"
+            ]
+        else:
+            isolation_capacity_inter = isolation_capacity_inter / population_size
+            param_dict["isolation_capacity"] = isolation_capacity_inter
+        if remove_symptomatic_rate_inter is None:
+            param_dict["remove_symptomatic_rate"] = self.baseline_param_dict[
+                "remove_symptomatic_rate"
+            ]
+        else:
+            remove_symptomatic_rate_inter = (
+                remove_symptomatic_rate_inter / population_size
+            )
+            param_dict["remove_symptomatic_rate"] = remove_symptomatic_rate_inter
+        if first_high_risk_category_n_inter is None:
+            param_dict["first_high_risk_category_n"] = self.baseline_param_dict[
+                "first_high_risk_category_n"
+            ]
+        else:
+            param_dict["first_high_risk_category_n"] = first_high_risk_category_n_inter
+        if remove_high_risk_rate_inter is None:
+            param_dict["remove_high_risk_rate"] = self.baseline_param_dict[
+                "remove_high_risk_rate"
+            ]
+        else:
+            remove_high_risk_rate_inter = remove_high_risk_rate_inter / population_size
+            param_dict["remove_high_risk_rate"] = remove_high_risk_rate_inter
+        if icu_capacity_inter is None:
+            param_dict["icu_capacity"] = self.baseline_param_dict["icu_capacity"]
+        else:
+            icu_capacity_inter = icu_capacity_inter / population_size
+            param_dict["icu_capacity"] = icu_capacity_inter
         self._validate_input_params(
-            transmission_reduction_factor_inter,
-            remove_symptomatic_rate_inter,
-            remove_high_risk_rate_inter,
-            first_high_risk_category_n_inter,
-            icu_capacity_inter,
+            param_dict["transmission_reduction_factor"],
+            param_dict["remove_symptomatic_rate"],
+            param_dict["remove_high_risk_rate"],
+            param_dict["first_high_risk_category_n"],
+            param_dict["icu_capacity"],
             infection_matrix,
         )
-        param_dict = dict()
-        param_dict[
-            "transmission_reduction_factor"
-        ] = transmission_reduction_factor_inter
-        param_dict["isolation_capacity"] = isolation_capacity_inter
-        param_dict["remove_symptomatic_rate"] = remove_symptomatic_rate_inter
-        param_dict["first_high_risk_category_n"] = first_high_risk_category_n_inter
-        param_dict["remove_high_risk_rate"] = remove_high_risk_rate_inter
-        param_dict["icu_capacity"] = icu_capacity_inter
-        self.intervention_param_dict = self.parse_param_dict(
-            param_dict, population_size
-        )
+        self.intervention_param_dict = param_dict
         self._validate_input_time(start_times, end_times)
         self.start_times = start_times
         self.end_times = end_times

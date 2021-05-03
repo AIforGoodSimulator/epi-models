@@ -192,24 +192,24 @@ class DeterministicCompartmentalModel(Model):
 
         # model control parameters
         # These are unique model control params
-        self.shield_decrease = np.float(
+        self.shield_decrease = float(
             Config.model_params["shiedling_reduction_between_groups"]
         )
-        self.shield_increase = np.float(
+        self.shield_increase = float(
             Config.model_params["shielding_increase_within_group"]
         )
-        self.better_hygiene = np.float(
+        self.better_hygiene = float(
             Config.model_params["better_hygiene_infection_scale"]
         )
 
         # we will get this from the UI default to 14 for now
         self.quarant_rate = 1 / (
-            np.float(Config.model_params["default_quarantine_period"])
+            float(Config.model_params["default_quarantine_period"])
         )
 
     def process_epidemic_parameters(self):
         self.R_0_list = [self.R0_low, self.R0_medium, self.R0_high]
-        removal_rate = 1 / (np.float(self.Infectious_period))
+        removal_rate = 1 / (float(self.Infectious_period))
         self.beta_list = [R_0 * removal_rate for R_0 in self.R_0_list]
 
         self.p_symptomatic = np.array(self.p_symptomatic)
@@ -839,7 +839,7 @@ class DeterministicCompartmentalModelRunner(ModelRunner):
                 intervention_start_time,
                 intervention_end_time,
                 self.model.infection_matrix,
-                isolation_capacity_inter=ideal_number_of_icus,
+                icu_capacity_inter=ideal_number_of_icus,
                 camp_specific_baseline_scenario=self.camp_baseline,
             )
         else:
@@ -855,7 +855,7 @@ class DeterministicCompartmentalModelRunner(ModelRunner):
                     intervention_start_time,
                     intervention_end_time,
                     self.model.infection_matrix,
-                    isolation_capacity_inter=capacity,
+                    icu_capacity_inter=capacity,
                     camp_specific_baseline_scenario=self.camp_baseline,
                 )
         increase_icu_intervention_result = self.model.run_multiple_simulations(
@@ -986,7 +986,7 @@ class DeterministicCompartmentalModelRunner(ModelRunner):
         intervention_start_time = [0]
         duration_50_end_time = [50]
         duration_100_end_time = [100]
-        duration_200_end_time = [280]
+        duration_200_end_time = [200]
         end_times_range = {
             "fifty_day": duration_50_end_time,
             "one_hundred_day": duration_100_end_time,
@@ -1019,7 +1019,7 @@ class DeterministicCompartmentalModelRunner(ModelRunner):
             intervention_start_time = [0]
             duration_50_end_time = [50]
             duration_100_end_time = [100]
-            duration_200_end_time = [280]
+            duration_200_end_time = [200]
             end_times_range = {
                 "fifty_day": duration_50_end_time,
                 "one_hundred_day": duration_100_end_time,
