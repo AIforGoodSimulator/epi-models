@@ -9,7 +9,7 @@ This documentation elaborates on the compartmental model used by the `Crisis Mod
 
 Compartmental Model
 ==========
-The model comprises of 11 disease compartments and 8 age compartments with a 10 years gap, starting from 0-10 to 70-above.
+The model comprises of 11 disease state compartments and 8 age compartments with a 10 years gap, starting from 0-10 to 70 and above.
 
 (fig2-Highlevel Architecture)
 
