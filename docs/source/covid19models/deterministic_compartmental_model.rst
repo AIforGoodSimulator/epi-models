@@ -9,11 +9,11 @@ This documentation elaborates on the compartmental model used by the `Crisis Mod
 
 Compartmental Model
 ==========
-
+The model comprises of 11 disease compartments and 8 age compartments with a 10 years gap, starting from 0-10 to 70-above.
 
 (fig2-Highlevel Architecture)
 
-Define ODEs
+Define the ODEs
 ==========
 The ordinary differential equations(ODEs) for the compartmental model are defined as follows:
 
@@ -36,7 +36,7 @@ The ordinary differential equations(ODEs) for the compartmental model are define
     dydt2d[Config.compartment_index["D"], :] = (deaths_without_icu+ self.death_prob_with_ICU* deaths_on_icu)
     dydt2d[Config.compartment_index["O"], :] = offsite
 
-Simulating the Compartmental model
+Simulating the model
 ==========
 ...
 
