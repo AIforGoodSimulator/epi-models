@@ -28,7 +28,7 @@ The ordinary differential equations(ODEs) for the compartmental model are define
     I_vec = y2d[Config.compartment_index["I"], :]
     # (self.p_symptomatic*E_latent-I_removed- quarantine_sicks+quarantined_sicks_sendback)
     H_vec = y2d[Config.compartment_index["H"], :]
-    #  (self.p_hosp_given_symptomatic * I_removed- hosp_rate * H_vec+ death_rate_ICU* (1 - self.death_prob_with_ICU) * np.minimum(C_vec, hospitalized_on_icu)+ +      self.p_hosp_given_symptomatic * Q_quarantined)
+    #  (self.p_hosp_given_symptomatic * I_removed- hosp_rate * H_vec+ death_rate_ICU*(1-self.death_prob_with_ICU) * np.minimum(C_vec, hospitalized_on_icu)+self.p_hosp_given_symptomatic * Q_quarantined)
     A_vec = y2d[Config.compartment_index["A"], :]
     # (1 - self.p_symptomatic) * E_latent - A_removed)
     C_vec = y2d[Config.compartment_index["C"], :]
