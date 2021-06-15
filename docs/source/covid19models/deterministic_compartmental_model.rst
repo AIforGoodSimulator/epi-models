@@ -5,17 +5,15 @@ Summary
 =======
 This documentation elaborates on the compartmental model used by the `Crisis Modelling team <https://www.aiforgoodsimulator.com/>`_ to forcast the spread of the COVID'19 disease. We will first understand to mathematically model the pandemic using ordinary differential equations and then use python to simulate the model.  Later we visualize the effects of the spread like the one in the figure below.
 
+Compartmental Model
+==========
+The model comprises of 11 disease state compartments and 8 age compartments with a 10 years gap, starting from 0-10 to 70 and above.
+
 .. figure:: Compartments.png
  :scale: 50 %
  :alt: map to buried treasure
 
   Model Diagram.
-
-Compartmental Model
-==========
-The model comprises of 11 disease state compartments and 8 age compartments with a 10 years gap, starting from 0-10 to 70 and above.
-
-(fig2-Highlevel Architecture)
 
 Define the ODEs
 ==========
