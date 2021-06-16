@@ -16,8 +16,8 @@ Within epidemiology, a compartment model is a type of mathematical model that ba
   Model Diagram.
   
 The states used in the model are as follows:
-- Susceptible: People in this compartment are what are called 'naive' - and are neither exposed or infected. (Think about everyone prior to COVID-19's arrival. 🙂) So essentially, this is the population before COVID-19 (or another disease) comes in.
-    - People here can move either into the Exposed or the Offsite categories.
+
+- Susceptible: People in this compartment are what are called 'naive' - and are neither exposed or infected. (Think about everyone prior to COVID-19's arrival. 🙂) So essentially, this is the population before COVID-19 (or another disease) comes in. - People here can move either into the Exposed or the Offsite categories.
 - Offsite: People in this compartment has been moved away from the camp prior to COVID-19 exposure, and is not in the population 'eligible' to get exposed to COVID-19.
 - Exposed: People in this compartment have been exposed to COVID-19, but are not infected yet. People who are Exposed can either move into the Infected or Asymptomatically Infected compartments.
 - Infected: People in this compartment have been exposed to, and infected with, COVID-19. At this stage, the individual would be showing symptoms, and is capable of transmitting COVID-19 to other individuals. The person can either go into the Recovered or Hospitalised compartments.
